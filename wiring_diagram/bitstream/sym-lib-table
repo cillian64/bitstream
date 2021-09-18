@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name pi_gpio)(type Legacy)(uri ${KIPRJMOD}/pi_gpio.lib)(options "")(descr ""))
+  (lib (name ws2812b_strip)(type Legacy)(uri ${KIPRJMOD}/ws2812b_strip.lib)(options "")(descr ""))
+  (lib (name meanwell)(type Legacy)(uri ${KIPRJMOD}/meanwell.lib)(options "")(descr ""))
+  (lib (name level_shifter)(type Legacy)(uri ${KIPRJMOD}/level_shifter.lib)(options "")(descr ""))
+)

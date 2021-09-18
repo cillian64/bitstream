@@ -1,0 +1,23 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# meanwell_lrs-100-5
+#
+DEF meanwell_lrs-100-5 U 0 40 Y Y 1 F N
+F0 "U" 100 50 50 H V C CNN
+F1 "meanwell_lrs-100-5" 100 -50 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+S -100 -100 300 -600 0 1 0 f
+X L 1 -300 -250 200 R 50 50 1 1 P
+X N 2 -300 -350 200 R 50 50 1 1 P
+X G 3 -300 -450 200 R 50 50 1 1 P
+X +5V 4 500 -150 200 L 50 50 1 1 P
+X +5V 5 500 -250 200 L 50 50 1 1 P
+X GND 6 500 -450 200 L 50 50 1 1 P
+X GND 7 500 -550 200 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+#End Library
