@@ -1,5 +1,5 @@
 import pygame
-import random
+from playlist import Playlist
 
 
 # Colours:
@@ -28,6 +28,7 @@ class Visualiser:
         self.size = (width, height)
         pygame.init()
         self.screen = pygame.display.set_mode(self.size)
+        self.playlist = Playlist()
 
     def _draw_led_strip(self, x, y, strip_colours):
         """ Draw an LED strip with top-left corner at (x, y). """
@@ -92,25 +93,12 @@ class Visualiser:
                 if event.type == pygame.QUIT:
                     return
 
-            # Draw pattern
-            self.generate_rain(led_state)
+            # Draw pattern frame from playlist
+            self.playlist.generate(led_state, pygame.time.get_ticks())
 
             # Render
             self._draw(led_state)
             clock.tick(fps)
-
-    def generate_rain(self, led_state):
-        """ Placeholder pattern """
-        # First, move all the LED positions down by one, shifting in black
-        for strip in led_state:
-            strip[:] = [(0, 0, 0)] + strip[:-1]
-
-        # Generate a "drip" on some random strips
-        density = 4
-        for _ in range(density):
-            drop_intensity = random.randint(50, 150)
-            drop_colour = (drop_intensity, drop_intensity, drop_intensity)
-            random.choice(led_state)[0] = drop_colour
 
 
 if __name__ == "__main__":
