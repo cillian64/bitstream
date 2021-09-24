@@ -235,7 +235,6 @@ Wire Wire Line
 	8700 1000 9450 1000
 Wire Wire Line
 	8800 1100 8800 1300
-Connection ~ 8800 1100
 Wire Wire Line
 	8800 1100 9550 1100
 Wire Wire Line
@@ -268,8 +267,6 @@ Wire Wire Line
 Connection ~ 11050 1100
 Wire Wire Line
 	11050 1100 11800 1100
-Wire Wire Line
-	11700 1000 11700 1300
 Connection ~ 11700 1000
 Wire Wire Line
 	11700 1000 12450 1000
@@ -302,23 +299,8 @@ Wire Wire Line
 	9100 1300 9100 1200
 Text Label 8150 1200 0    50   ~ 0
 LEDS_1
-NoConn ~ 9200 1300
-NoConn ~ 9200 2300
-NoConn ~ 9950 1300
-NoConn ~ 9950 2300
-NoConn ~ 10700 1300
-NoConn ~ 11450 1300
-NoConn ~ 12200 1300
-NoConn ~ 12950 1300
-NoConn ~ 13700 1300
-NoConn ~ 14450 1300
 NoConn ~ 14350 2300
 NoConn ~ 14450 2300
-NoConn ~ 13700 2300
-NoConn ~ 12950 2300
-NoConn ~ 12200 2300
-NoConn ~ 11450 2300
-NoConn ~ 10700 2300
 $Comp
 L ws2812b_strip:WS2812b_strip U?
 U 1 1 614D6DC8
@@ -503,12 +485,10 @@ Wire Wire Line
 	14050 3100 14050 3300
 Wire Wire Line
 	8700 3000 8700 3300
-Connection ~ 8700 3000
 Wire Wire Line
 	8700 3000 9450 3000
 Wire Wire Line
 	8800 3100 8800 3300
-Connection ~ 8800 3100
 Wire Wire Line
 	8800 3100 9550 3100
 Wire Wire Line
@@ -575,52 +555,16 @@ Wire Wire Line
 	9100 3300 9100 3200
 Text Label 8150 3200 0    50   ~ 0
 LEDS_2
-NoConn ~ 9200 3300
-NoConn ~ 9200 4300
-NoConn ~ 9950 3300
-NoConn ~ 9950 4300
-NoConn ~ 10700 3300
-NoConn ~ 11450 3300
-NoConn ~ 12200 3300
-NoConn ~ 12950 3300
-NoConn ~ 13700 3300
-NoConn ~ 14450 3300
 NoConn ~ 14350 4300
 NoConn ~ 14450 4300
-NoConn ~ 13700 4300
-NoConn ~ 12950 4300
-NoConn ~ 12200 4300
-NoConn ~ 11450 4300
-NoConn ~ 10700 4300
-Wire Wire Line
-	3900 1000 8700 1000
-Wire Wire Line
-	3900 1300 7600 1300
-Wire Wire Line
-	7600 1300 7600 1100
-Wire Wire Line
-	7600 1100 8800 1100
-Wire Wire Line
-	7500 1100 7500 3000
-Wire Wire Line
-	7500 3000 8700 3000
-Wire Wire Line
-	7400 1400 7400 3100
-Wire Wire Line
-	7400 3100 8800 3100
-Wire Wire Line
-	8100 3200 8100 4150
-Wire Wire Line
-	8100 4150 6400 4150
 Wire Wire Line
 	8100 3200 9100 3200
 Wire Wire Line
-	8000 1200 8000 4050
+	7900 1200 7900 4050
 Wire Wire Line
-	8000 4050 6400 4050
+	7900 4050 6400 4050
 Wire Wire Line
-	8000 1200 9100 1200
-NoConn ~ 6400 4350
+	7900 1200 9100 1200
 NoConn ~ 5500 4450
 NoConn ~ 5500 4550
 NoConn ~ 6400 4450
@@ -679,9 +623,9 @@ Wire Wire Line
 	5400 4350 5500 4350
 Text Label 4200 3750 0    50   ~ 0
 GND
-Text Label 4700 2650 1    50   ~ 0
+Text Label 4550 2900 1    50   ~ 0
 +5V
-Text Label 4800 2650 1    50   ~ 0
+Text Label 4450 2900 1    50   ~ 0
 GND
 Wire Wire Line
 	3100 1100 1650 1100
@@ -727,38 +671,8 @@ Wire Notes Line
 	8550 4600 8550 2900
 Text Notes 3100 1850 0    100  ~ 0
 SCREW\nTERMINALS
-Wire Wire Line
-	3900 1400 7400 1400
-Wire Wire Line
-	3900 1100 7500 1100
-Wire Wire Line
-	4150 3750 4800 3750
-Wire Wire Line
-	4150 3550 4700 3550
-Connection ~ 3900 1100
-Wire Wire Line
-	3900 1100 3900 1150
-Wire Wire Line
-	3900 1150 4700 1150
-Connection ~ 3900 1400
-Wire Wire Line
-	3900 1400 3900 1450
-Wire Wire Line
-	3900 1450 4800 1450
 Wire Notes Line
 	3000 700  3000 1900
-Wire Notes Line
-	4000 1900 4000 700 
-Wire Wire Line
-	4700 1150 4700 3550
-Connection ~ 4700 3550
-Wire Wire Line
-	4700 3550 6500 3550
-Wire Wire Line
-	4800 1450 4800 3750
-Connection ~ 4800 3750
-Wire Wire Line
-	4800 3750 5400 3750
 $Comp
 L graphic:SYM_Flash_Small #SYM?
 U 1 1 617185F6
@@ -772,23 +686,19 @@ F 3 "~" H 2650 800 50  0001 C CNN
 $EndComp
 Text Notes 2050 700  0    50   ~ 0
 +240V IN
-Wire Notes Line
-	3000 700  4000 700 
-Wire Notes Line
-	3000 1900 4000 1900
-Text Notes 5700 1100 0    50   ~ 0
+Text Notes 5700 1000 0    50   ~ 0
 1.5mm² 2-core flex
-Text Notes 5700 1400 0    50   ~ 0
+Text Notes 5700 1350 0    50   ~ 0
 1.5mm² 2-core flex
 Text Notes 9650 1000 0    50   ~ 0
 Power: 1.5mm² 2-core flex with 8x insulated tap-splice
 Text Notes 9650 3000 0    50   ~ 0
 Power: 1.5mm² 2-core flex with 8x insulated tap-splice
 Text Notes 10500 2450 0    50   ~ 0
-8x 1-core JST-SM M-F cables
+8x 2-core JST-SM M-F cables
 Text Notes 10500 4450 0    50   ~ 0
-8x 1-core JST-SM M-F cables
-Text Notes 9000 7500 0    50   ~ 0
+8x 2-core JST-SM M-F cables
+Text Notes 5950 10200 0    50   ~ 0
 Cable list:\n\n- 2x 4m 1.5mm² 2-core flex with 8x insulated tap splice\n- 16x 1.2m 22AWG 1-core JST-SM M-F\n- 32x short 22AWG spade terminal to JST-SM adaptors\n- 22AWG 2-pin MOLEX-KK for power supply to RPI\n- 2x 22AWG 1-pin MOLEX-KK to JST-SM for LED data\n\n\n\nConnector list:\n\n - 16x 3-way JST-SM plug\n - 16x 3-way JST-SM socket\n - 16x 2-way JST-SM plug\n - 16x 2-way JST-SM socket\n - 32x blue insulated tap-splice\n - 32x red insulated spade socket\n - 3x 2-way MOLEX KK headers\n - 3x 2-way MOLEX KK plugs\n\n\n\nWire list:\n\n- 10m 1.5mm^2 2-core\n- 50m blue 22AWG\n- 20m red 22AWG\n- 20m black 22AWG
 NoConn ~ 3550 3650
 NoConn ~ 3550 3750
@@ -827,16 +737,220 @@ NoConn ~ 4150 5350
 NoConn ~ 4150 5450
 Text Notes 3500 5600 0    50   ~ 0
 RPI GPIO breakout
-Text Notes 7250 4150 0    50   ~ 0
-2x single 22AWG
+Text Notes 7100 4300 0    50   ~ 0
+2x 2-core 16/0.2mm
 Text Notes 4850 3100 0    50   ~ 0
 2-way\nMOLEX KK
 Text Notes 6800 4000 0    50   ~ 0
 2x 2-way\nMOLEX KK
-Text Notes 4800 2300 1    50   ~ 0
-2-core 22AWG
-Text Notes 10350 1200 0    50   ~ 0
+Text Notes 4550 2650 1    50   ~ 0
+2-core 16/0.2mm
+Text Notes 14000 1050 0    50   ~ 0
 Taps: 22AWG
-Text Notes 10350 3200 0    50   ~ 0
+Text Notes 14000 3050 0    50   ~ 0
 Taps: 22AWG
+Wire Wire Line
+	3900 1300 4000 1300
+Wire Wire Line
+	4000 1050 8000 1050
+Wire Wire Line
+	4000 1050 4000 1300
+Wire Wire Line
+	3900 1100 3950 1100
+Wire Wire Line
+	3950 1100 3950 1350
+Wire Wire Line
+	8000 1050 8000 1100
+Wire Wire Line
+	8000 1100 8800 1100
+Connection ~ 8800 1100
+Wire Wire Line
+	7400 1400 7400 3100
+Wire Wire Line
+	7400 3100 8800 3100
+Connection ~ 8800 3100
+Wire Wire Line
+	7450 1350 7450 3000
+Wire Wire Line
+	7450 3000 8700 3000
+Wire Wire Line
+	3950 1350 7450 1350
+Connection ~ 8700 3000
+Wire Notes Line
+	3000 700  4600 700 
+Wire Notes Line
+	4600 700  4600 1900
+Wire Notes Line
+	4600 1900 3000 1900
+Wire Wire Line
+	9200 2300 9300 2300
+Wire Wire Line
+	9300 2300 9300 1200
+Wire Wire Line
+	9300 1200 9950 1200
+Wire Wire Line
+	9950 1200 9950 1300
+Wire Wire Line
+	9950 2300 10050 2300
+Wire Wire Line
+	10050 2300 10050 1200
+Wire Wire Line
+	10050 1200 10700 1200
+Wire Wire Line
+	10700 1200 10700 1300
+Wire Wire Line
+	10700 2300 10800 2300
+Wire Wire Line
+	10800 2300 10800 1200
+Wire Wire Line
+	10800 1200 11450 1200
+Wire Wire Line
+	11450 1200 11450 1300
+Wire Wire Line
+	11450 2300 11550 2300
+Wire Wire Line
+	11550 2300 11550 1200
+Wire Wire Line
+	11700 1000 11700 1300
+Wire Wire Line
+	11550 1200 12200 1200
+Wire Wire Line
+	12200 1200 12200 1300
+Wire Wire Line
+	12200 2300 12300 2300
+Wire Wire Line
+	12300 2300 12300 1200
+Wire Wire Line
+	12300 1200 12950 1200
+Wire Wire Line
+	12950 1200 12950 1300
+Wire Wire Line
+	12950 2300 13050 2300
+Wire Wire Line
+	13050 2300 13050 1200
+Wire Wire Line
+	13050 1200 13700 1200
+Wire Wire Line
+	13700 1200 13700 1300
+Wire Wire Line
+	13700 2300 13800 2300
+Wire Wire Line
+	13800 2300 13800 1200
+Wire Wire Line
+	13800 1200 14450 1200
+Wire Wire Line
+	14450 1200 14450 1300
+Wire Wire Line
+	9200 4300 9300 4300
+Wire Wire Line
+	9300 4300 9300 3200
+Wire Wire Line
+	9300 3200 9950 3200
+Wire Wire Line
+	9950 3200 9950 3300
+Wire Wire Line
+	9950 4300 10050 4300
+Wire Wire Line
+	10050 4300 10050 3200
+Wire Wire Line
+	10050 3200 10700 3200
+Wire Wire Line
+	10700 3200 10700 3300
+Wire Wire Line
+	10700 4300 10800 4300
+Wire Wire Line
+	10800 4300 10800 3200
+Wire Wire Line
+	10800 3200 11450 3200
+Wire Wire Line
+	11450 3200 11450 3300
+Wire Wire Line
+	11450 4300 11550 4300
+Wire Wire Line
+	11550 4300 11550 3200
+Wire Wire Line
+	11550 3200 12200 3200
+Wire Wire Line
+	12200 3200 12200 3300
+Wire Wire Line
+	12200 4300 12300 4300
+Wire Wire Line
+	12300 4300 12300 3200
+Wire Wire Line
+	12300 3200 12950 3200
+Wire Wire Line
+	12950 3200 12950 3300
+Wire Wire Line
+	12950 4300 13050 4300
+Wire Wire Line
+	13050 4300 13050 3200
+Wire Wire Line
+	13050 3200 13700 3200
+Wire Wire Line
+	13700 3200 13700 3300
+Wire Wire Line
+	13700 4300 13800 4300
+Wire Wire Line
+	13800 4300 13800 3200
+Wire Wire Line
+	13800 3200 14450 3200
+Wire Wire Line
+	14450 3200 14450 3300
+Wire Wire Line
+	6400 4350 6600 4350
+Wire Wire Line
+	6600 4100 7950 4100
+Wire Wire Line
+	7950 4100 7950 1250
+Wire Wire Line
+	9200 1250 9200 1300
+Wire Wire Line
+	7950 1250 9200 1250
+Wire Wire Line
+	6600 4350 8150 4350
+Wire Wire Line
+	8150 4350 8150 3250
+Wire Wire Line
+	8150 3250 9200 3250
+Wire Wire Line
+	9200 3250 9200 3300
+Connection ~ 6600 4350
+Wire Wire Line
+	6600 4350 6600 4100
+Wire Wire Line
+	6400 4150 6650 4150
+Wire Wire Line
+	6650 4150 6650 4300
+Wire Wire Line
+	6650 4300 8100 4300
+Wire Wire Line
+	8100 3200 8100 4300
+Wire Wire Line
+	3900 1000 8700 1000
+Wire Wire Line
+	4150 3550 4550 3550
+Wire Wire Line
+	4550 950  3900 950 
+Wire Wire Line
+	3900 950  3900 1000
+Connection ~ 3900 1000
+Wire Wire Line
+	3900 1400 7400 1400
+Wire Wire Line
+	4150 3750 4450 3750
+Wire Wire Line
+	4550 950  4550 3550
+Connection ~ 4550 3550
+Wire Wire Line
+	4550 3550 6500 3550
+Wire Wire Line
+	4450 3750 4450 1450
+Wire Wire Line
+	4450 1450 3900 1450
+Wire Wire Line
+	3900 1450 3900 1400
+Connection ~ 4450 3750
+Wire Wire Line
+	4450 3750 5400 3750
+Connection ~ 3900 1400
 $EndSCHEMATC
