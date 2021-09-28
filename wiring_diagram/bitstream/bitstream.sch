@@ -698,8 +698,8 @@ Text Notes 10500 2450 0    50   ~ 0
 8x 2-core JST-SM M-F cables
 Text Notes 10500 4450 0    50   ~ 0
 8x 2-core JST-SM M-F cables
-Text Notes 5950 10200 0    50   ~ 0
-Cable list:\n\n- 2x 4m 1.5mm² 2-core flex with 8x insulated tap splice\n- 16x 1.2m 22AWG 1-core JST-SM M-F\n- 32x short 22AWG spade terminal to JST-SM adaptors\n- 22AWG 2-pin MOLEX-KK for power supply to RPI\n- 2x 22AWG 1-pin MOLEX-KK to JST-SM for LED data\n\n\n\nConnector list:\n\n - 16x 3-way JST-SM plug\n - 16x 3-way JST-SM socket\n - 16x 2-way JST-SM plug\n - 16x 2-way JST-SM socket\n - 32x blue insulated tap-splice\n - 32x red insulated spade socket\n - 3x 2-way MOLEX KK headers\n - 3x 2-way MOLEX KK plugs\n\n\n\nWire list:\n\n- 10m 1.5mm^2 2-core\n- 50m blue 22AWG\n- 20m red 22AWG\n- 20m black 22AWG
+Text Notes 8550 5500 0    50   ~ 0
+Cable list:\n\n- 2x 3m power bus (1.5mm² 2-core, bare stripped cores on one end)\n- 13x 1m daisy chain cable (22AWG 2-core, JST-SM to JST-SM with pigtails to Scotchlock T-taps)\n- 2x 1.5m driver cable (MOLEX KK to JST-SM with pigtails to Scotchlock T-taps)
 NoConn ~ 3550 3650
 NoConn ~ 3550 3750
 NoConn ~ 3550 3850
