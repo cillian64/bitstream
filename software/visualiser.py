@@ -9,7 +9,7 @@ strip_bg_colour = (0, 0, 0)  # Black
 
 # Display settings
 window_size = (800, 600)
-fps = 60
+fps = 30
 
 # Dimensions
 strip_pitch = window_size[0] / 9  # Distance between strips on a pole
