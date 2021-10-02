@@ -1,13 +1,15 @@
 from playlist.colour_rain import ColourRain
 from playlist.rainfall import Rainfall
 from playlist.stars import Stars
+from playlist.rain_intensity_waves import RainIntensityWaves
 
 
 # Playlist of pattern classes.  A fresh pattern object is created from each
 # class when the pattern starts to help make a clean state.
 patterns = [
-    Stars,
     Rainfall,
+    RainIntensityWaves,
+#    Stars,
     ColourRain,
 ]
 
