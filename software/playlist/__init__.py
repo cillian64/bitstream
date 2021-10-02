@@ -2,6 +2,7 @@ from playlist.colour_rain import ColourRain
 from playlist.rainfall import Rainfall
 from playlist.stars import Stars
 from playlist.rain_intensity_waves import RainIntensityWaves
+from playlist.rain_colour_waves import RainColourWaves
 
 
 # Playlist of pattern classes.  A fresh pattern object is created from each
@@ -9,8 +10,9 @@ from playlist.rain_intensity_waves import RainIntensityWaves
 patterns = [
     Rainfall,
     RainIntensityWaves,
-#    Stars,
+    RainColourWaves,
     ColourRain,
+#    Stars,
 ]
 
 transition_len = 10 * 1000  # 10 seconds

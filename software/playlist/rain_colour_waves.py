@@ -1,22 +1,28 @@
 import random
+import colorsys
 
 
 # Drops are more dense and on average brighter near the wave centre
 density_away_from_wave = 4 / 15  # Matches baseline rainfall
-density_near_wave = 0.35
-density_at_wave = 0.45
+#density_near_wave = 0.35
+#density_at_wave = 0.45
+density_near_wave = 4 / 15
+density_at_wave = 4 / 15
 
 # Each of these is a range corresponding to arguments to random.randint
 intensity_away_from_wave = (50, 150)  # Matches baseline rainfall
-intensity_near_wave = (100, 200)
-intensity_at_wave = (125, 255)
+#intensity_near_wave = (100, 200)
+#intensity_at_wave = (125, 255)
+intensity_near_wave = (50, 150)
+intensity_at_wave = (50, 150)
 
 
-class RainIntensityWaves:
-    name = "Rain Intensity Waves"
+class RainColourWaves:
+    name = "Rain Colour Waves"
 
     wave_active = False
     wave_pos = -5.0
+    wave_hue = 0.0
     last_wave = 0
 
     def generate(self, led_state, transition, tick):
@@ -26,11 +32,12 @@ class RainIntensityWaves:
             self.wave_active = True
             self.last_wave = tick
             self.wave_pos = -5.0
+            self.wave_hue = random.random()
             print("Starting new wave!")
 
         # Move the wave along
         if self.wave_active:
-            self.wave_pos += 0.2
+            self.wave_pos += 0.1
 
         # Once the wave is past the end of the strips, deactivate it
         if self.wave_active and self.wave_pos > 19.0:
@@ -57,6 +64,15 @@ class RainIntensityWaves:
 
             if random.random() < density:
                 # Generate a drop
-                drop_intensity = random.randint(*intensity)
-                drop_colour = (drop_intensity, drop_intensity, drop_intensity)
+                drop_intensity = random.randint(*intensity) / 255
+#                drop_saturation = (density - density_away_from_wave) / \
+#                                  (density_at_wave - density_away_from_wave) \
+#                                  * 0.25
+                if abs(strip_num - self.wave_pos) < 4.0:
+                    drop_saturation = 1 - abs(strip_num - self.wave_pos) / 4.0
+                else:
+                    drop_saturation = 0.0
+                drop_hsv = (self.wave_hue, drop_saturation, drop_intensity)
+                rgb = colorsys.hsv_to_rgb(*drop_hsv)
+                drop_colour = tuple(255 * x for x in rgb)
                 strip[0] = drop_colour
