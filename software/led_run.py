@@ -3,27 +3,29 @@ from rpi_ws281x import ws, Color, Adafruit_NeoPixel
 from playlist import Playlist
 
 
-led_count = 30
-fps = 30
+led_count = 30  # Per strip
+target_fps = 40
+freq = 700000
+brightness = 255
 
 # LED strip configuration:
-LED_1_COUNT = led_count  # Number of LED pixels.
-LED_1_PIN = 12           # GPIO pin connected to the pixels
-LED_1_FREQ_HZ = 700000   # LED signal frequency in hertz
-LED_1_DMA = 10           # DMA channel to use for generating signal
-LED_1_BRIGHTNESS = 255   # Set to 0 for darkest and 255 for brightest
-LED_1_INVERT = False     # True to invert the signal
-LED_1_CHANNEL = 0        # 0 or 1
-LED_1_STRIP = ws.WS2811_STRIP_GBR
+LED_1_COUNT = led_count * 8     # Number of LED pixels.
+LED_1_PIN = 12                  # GPIO pin connected to the pixels
+LED_1_FREQ_HZ = freq            # LED signal frequency in hertz
+LED_1_DMA = 10                  # DMA channel to use for generating signal
+LED_1_BRIGHTNESS = brightness   # Set to 0 for darkest and 255 for brightest
+LED_1_INVERT = False            # True to invert the signal
+LED_1_CHANNEL = 0               # 0 or 1
+LED_1_STRIP = ws.WS2812_STRIP
 
-LED_2_COUNT = led_count  # Number of LED pixels.
-LED_2_PIN = 13           # GPIO pin connected to the pixels
-LED_2_FREQ_HZ = 700000   # LED signal frequency in hertz
-LED_2_DMA = 11           # DMA channel to use for generating signal
-LED_2_BRIGHTNESS = 255   # Set to 0 for darkest and 255 for brightest
-LED_2_INVERT = False     # True to invert the signal
-LED_2_CHANNEL = 1        # 0 or 1
-LED_2_STRIP = ws.WS2811_STRIP_GBR
+LED_2_COUNT = led_count * 8     # Number of LED pixels.
+LED_2_PIN = 13                  # GPIO pin connected to the pixels
+LED_2_FREQ_HZ = freq            # LED signal frequency in hertz
+LED_2_DMA = 10                  # DMA channel to use for generating signal
+LED_2_BRIGHTNESS = brightness   # Set to 0 for darkest and 255 for brightest
+LED_2_INVERT = False            # True to invert the signal
+LED_2_CHANNEL = 1               # 0 or 1
+LED_2_STRIP = ws.WS2812_STRIP
 
 
 class LedRunner:
@@ -54,24 +56,28 @@ class LedRunner:
         for strip in led_state:
             assert len(strip) == led_count
 
-        for i in range(led_count):
-            colour = tuple(int(x) for x in led_state[0][i])
-            self.strip1.setPixelColor(i, Color(*colour))
-            colour = tuple(int(x) for x in led_state[1][i])
-            self.strip2.setPixelColor(i, Color(*colour))
+        for strip_num in range(8):
+            for pix_num in range(led_count):
+                colour = tuple(int(x) for x in led_state[2 * strip_num][pix_num])
+                self.strip1.setPixelColor(strip_num * led_count + pix_num, Color(*colour))
+
+                if strip_num < 7:
+                    colour = tuple(int(x) for x in led_state[2 * strip_num + 1][pix_num])
+                    self.strip2.setPixelColor((strip_num + 1) * led_count + pix_num, Color(*colour))
 
         self.strip1.show()
         self.strip2.show()
 
-    def main_loop(self, fps):
-        """ Calls this._draw() `fps' times per second until the application
-        is terminated. """
+    def main_loop(self, target_fps):
+        """ Calls this._draw() `target_fps' times per second until the
+        application is terminated. """
 
         # Initialise LEDs to all black
         led_state = []
         for i in range(8 + 7):
             led_state.append([(0, 0, 0)] * led_count)
 
+        last_frame = time.time()  # Time in s of last frame
         while True:
             # Draw pattern frame from playlist
             millis = time.time() * 1000
@@ -80,9 +86,20 @@ class LedRunner:
             # Render
             self._draw(led_state)
 
-            time.sleep(1.0 / fps)
+            next_frame = last_frame + 1.0 / target_fps
+            now = time.time()
+            time_to_sleep = next_frame - now
+
+            if time_to_sleep > 0.0:
+                time.sleep(time_to_sleep)
+            else:
+                actual_fps = 1.0 / (now - last_frame)
+                print("Warning: dropping below {} target_fps (actual {})"
+                    .format(target_fps, actual_fps))
+
+            last_frame = now
 
 
 if __name__ == "__main__":
     led_runner = LedRunner()
-    led_runner.main_loop(fps)
+    led_runner.main_loop(target_fps)
