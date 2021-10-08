@@ -68,6 +68,13 @@ class LedRunner:
         self.strip1.show()
         self.strip2.show()
 
+    def blank_leds(self):
+        for i in range(240):
+            self.strip1.setPixelColor(i, Color(0, 0, 0))
+            self.strip2.setPixelColor(i, Color(0, 0, 0))
+        self.strip1.show()
+        self.strip2.show()
+
     def main_loop(self, target_fps):
         """ Calls this._draw() `target_fps' times per second until the
         application is terminated. """
@@ -101,5 +108,11 @@ class LedRunner:
 
 
 if __name__ == "__main__":
+    print("Starting up")
     led_runner = LedRunner()
-    led_runner.main_loop(target_fps)
+    try:
+        led_runner.main_loop(target_fps)
+    except KeyboardInterrupt:
+        print("\nBlanking strips")
+        led_runner.blank_leds()
+        print("Done")
