@@ -4,9 +4,9 @@ from playlist import Playlist
 
 
 led_count = 30  # Per strip
-target_fps = 40
+target_fps = 30
 freq = 700000
-brightness = 255
+brightness = 128
 
 # LED strip configuration:
 LED_1_COUNT = led_count * 8     # Number of LED pixels.
@@ -63,7 +63,7 @@ class LedRunner:
 
                 if strip_num < 7:
                     colour = tuple(int(x) for x in led_state[2 * strip_num + 1][pix_num])
-                    self.strip2.setPixelColor((strip_num + 1) * led_count + pix_num, Color(*colour))
+                    self.strip2.setPixelColor(strip_num * led_count + pix_num, Color(*colour))
 
         self.strip1.show()
         self.strip2.show()
