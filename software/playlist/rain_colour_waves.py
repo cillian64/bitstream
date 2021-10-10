@@ -3,7 +3,7 @@ import colorsys
 
 
 # Drops are more dense and on average brighter near the wave centre
-density_away_from_wave = 4 / 15  # Matches baseline rainfall
+density_away_from_wave = 1 / 15  # Matches baseline rainfall
 #density_near_wave = 0.35
 #density_at_wave = 0.45
 density_near_wave = 4 / 15

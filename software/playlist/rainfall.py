@@ -14,7 +14,7 @@ class Rainfall:
             strip[:] = [(0, 0, 0)] + strip[:-1]
 
         # Generate a "drip" on some random strips
-        density = 4
+        density = 1
         for _ in range(density):
             drop_intensity = random.randint(50, 150)
             drop_colour = (drop_intensity, drop_intensity, drop_intensity)

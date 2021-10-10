@@ -12,10 +12,10 @@ class ColourRain:
             strip[:] = [(0, 0, 0)] + strip[:-1]
 
         # Generate a "drip" on some random strips
-        density = 4
+        density = 1
         for _ in range(density):
             # Every 10 drips should be coloured, otherwise monochrome
-            if random.randint(0, 9) == 9:
+            if random.randint(0, 3) == 0:
                 # When transition == 0.0 we need to match the normal drops
                 # below (i.e. saturation = 0.0 and value = 0.2-0.6) When
                 # transition == 1.0 we insert fully saturated colours

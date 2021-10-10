@@ -9,12 +9,12 @@ from playlist.colour_wipes import ColourWipes
 # Playlist of pattern classes.  A fresh pattern object is created from each
 # class when the pattern starts to help make a clean state.
 patterns = [
-#    RainIntensityWaves,
-#    RainColourWaves,
-#    ColourRain,
-#    Stars,
-    ColourWipes,
     Rainfall,
+    RainIntensityWaves,
+    ColourRain,
+    RainColourWaves,
+#    Stars,
+#    ColourWipes,
 ]
 
 transition_len = 10 * 1000  # 10 seconds
