@@ -4,6 +4,8 @@ import colorsys
 
 class ColourRain:
     name = "Colour Rain"
+    transition_len = 10000
+    pattern_len = 10000
 
     def generate(self, led_state, transition, tick):
         """ Like standard rain but with occasional colour drops """

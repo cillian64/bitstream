@@ -10,8 +10,10 @@ from playlist.rain_colour_waves import RainColourWaves
 # class when the pattern starts to help make a clean state.
 patterns = [
     Rainfall,
-    RainIntensityWaves,
     ColourRain,
+    Rainfall,
+    RainIntensityWaves,
+    Rainfall,
     RainColourWaves,
     # Stars,
     # ColourWipes,

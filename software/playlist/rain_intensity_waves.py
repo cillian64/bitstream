@@ -11,9 +11,13 @@ intensity_away_from_wave = (25, 75)  # Matches baseline rainfall
 intensity_near_wave = (100, 200)
 intensity_at_wave = (125, 255)
 
+wave_frequency = 7000
+
 
 class RainIntensityWaves:
     name = "Rain Intensity Waves"
+    transition_len = 0
+    pattern_len = 30000
 
     wave_active = False
     wave_pos = -5.0
@@ -22,7 +26,7 @@ class RainIntensityWaves:
     def generate(self, led_state, transition, tick):
         # When we aren't in transition, generate a wave every 3s
         if transition > 0.5 and not self.wave_active and \
-                (tick - self.last_wave) > 5000:
+                (tick - self.last_wave) > wave_frequency:
             self.wave_active = True
             self.last_wave = tick
             self.wave_pos = -5.0
