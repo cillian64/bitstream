@@ -3,6 +3,9 @@ import random
 
 class Rainfall:
     name = "Rainfall"
+    # No need for transitions because this is the vanilla pattern
+    transition_len = 0
+    pattern_len = 5000
 
     def generate(self, led_state, transition, tick):
         """ Basic medium-density monochrome rainfall """
