@@ -11,22 +11,18 @@ intensity_away_from_wave = (25, 75)  # Matches baseline rainfall
 intensity_near_wave = (100, 200)
 intensity_at_wave = (125, 255)
 
-wave_frequency = 7000
-
 
 class RainIntensityWaves:
     name = "Rain Intensity Waves"
     transition_len = 0
-    pattern_len = 30000
+    pattern_len = 5000
 
     wave_active = False
     wave_pos = -5.0
     last_wave = 0
 
     def generate(self, led_state, transition, tick):
-        # When we aren't in transition, generate a wave every 3s
-        if transition > 0.5 and not self.wave_active and \
-                (tick - self.last_wave) > wave_frequency:
+        if not self.wave_active:
             self.wave_active = True
             self.last_wave = tick
             self.wave_pos = -5.0
@@ -35,11 +31,6 @@ class RainIntensityWaves:
         # Move the wave along
         if self.wave_active:
             self.wave_pos += 0.2
-
-        # Once the wave is past the end of the strips, deactivate it
-        if self.wave_active and self.wave_pos > 19.0:
-            self.wave_active = False
-            print("Deactivated wave")
 
         # Move all the LED positions down by one, shifting in black
         for strip in led_state:
