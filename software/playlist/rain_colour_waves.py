@@ -10,7 +10,7 @@ density_near_wave = 4 / 15
 density_at_wave = 4 / 15
 
 # Each of these is a range corresponding to arguments to random.randint
-intensity_away_from_wave = (50, 150)  # Matches baseline rainfall
+intensity_away_from_wave = (25, 75)  # Matches baseline rainfall
 #intensity_near_wave = (100, 200)
 #intensity_at_wave = (125, 255)
 intensity_near_wave = (50, 150)
@@ -51,11 +51,10 @@ class RainColourWaves:
         # Generate a "drip" on some random strips.  Drips are more dense and
         # brighter around the wave position
         for strip_num, strip in enumerate(led_state):
-            # Decide on probability of making a new drop on this strip
-            if abs(strip_num - self.wave_pos) < 2.0:
+            if abs(strip_num - self.wave_pos) < 1.0:
                 density = density_at_wave
                 intensity = intensity_at_wave
-            elif abs(strip_num - self.wave_pos) < 4.0:
+            elif abs(strip_num - self.wave_pos) < 3.0:
                 density = density_near_wave
                 intensity = intensity_near_wave
             else:
@@ -68,10 +67,12 @@ class RainColourWaves:
 #                drop_saturation = (density - density_away_from_wave) / \
 #                                  (density_at_wave - density_away_from_wave) \
 #                                  * 0.25
-                if abs(strip_num - self.wave_pos) < 4.0:
-                    drop_saturation = 1 - abs(strip_num - self.wave_pos) / 4.0
+                if abs(strip_num - self.wave_pos) < 5.0:
+                    drop_saturation = 1 - abs(strip_num - self.wave_pos) / 5.0
+                    drop_saturation = drop_saturation ** 0.5
                 else:
                     drop_saturation = 0.0
+
                 drop_hsv = (self.wave_hue, drop_saturation, drop_intensity)
                 rgb = colorsys.hsv_to_rgb(*drop_hsv)
                 drop_colour = tuple(255 * x for x in rgb)

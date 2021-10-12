@@ -6,7 +6,7 @@ from playlist import Playlist
 led_count = 30  # Per strip
 target_fps = 30
 freq = 700000
-brightness = 128
+brightness = 255
 
 # LED strip configuration:
 LED_1_COUNT = led_count * 8     # Number of LED pixels.

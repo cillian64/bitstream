@@ -29,7 +29,7 @@ class ColourRain:
                 rgb = colorsys.hsv_to_rgb(hue, sat, val)
                 drop_colour = tuple(255 * x for x in rgb)
             else:
-                drop_intensity = random.randint(50, 150)
+                drop_intensity = random.randint(25, 75)
                 drop_colour = (drop_intensity, drop_intensity, drop_intensity)
 
             random.choice(led_state)[0] = drop_colour

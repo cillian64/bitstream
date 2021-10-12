@@ -7,7 +7,7 @@ density_near_wave = 0.35
 density_at_wave = 0.45
 
 # Each of these is a range corresponding to arguments to random.randint
-intensity_away_from_wave = (50, 150)  # Matches baseline rainfall
+intensity_away_from_wave = (25, 75)  # Matches baseline rainfall
 intensity_near_wave = (100, 200)
 intensity_at_wave = (125, 255)
 
