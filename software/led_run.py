@@ -4,7 +4,7 @@ from playlist import Playlist
 
 
 led_count = 30  # Per strip
-target_fps = 30
+target_fps = 40
 freq = 700000
 brightness = 255
 
@@ -30,6 +30,9 @@ LED_2_STRIP = ws.WS2812_STRIP
 
 class LedRunner:
     """ Renders to real WS2812b LEDs """
+    # Time (in epoch seconds) of last FPS-drop warning, so we don't print them
+    # excessively often if the FPS is always low.
+    last_fps_warn = 0
 
     def __init__(self):
         """ Internal setup, initialise LED strip drivers. """
@@ -99,10 +102,16 @@ class LedRunner:
 
             if time_to_sleep > 0.0:
                 time.sleep(time_to_sleep)
-            else:
+            elif time_to_sleep > -1.0 / target_fps / 100:
+                # If the FPS only drops by a little bit then don't warn
+                pass
+            elif time.time() - self.last_fps_warn > 2:
+                self.last_fps_warn = time.time()
                 actual_fps = 1.0 / (now - last_frame)
-                print("Warning: dropping below {} target_fps (actual {})"
-                    .format(target_fps, actual_fps))
+                print(
+                    "Warning: dropping below {:.1f} target_fps (actual {:.1f})"
+                    .format(target_fps, actual_fps)
+                )
 
             last_frame = now
 

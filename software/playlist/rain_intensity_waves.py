@@ -26,7 +26,6 @@ class RainIntensityWaves:
             self.wave_active = True
             self.last_wave = tick
             self.wave_pos = -5.0
-            print("Starting new wave!")
 
         # Move the wave along
         if self.wave_active:

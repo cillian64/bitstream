@@ -30,13 +30,11 @@ class RainColourWaves:
     last_wave = 0
 
     def generate(self, led_state, transition, tick):
-        # When we aren't in transition, generate a wave every 3s
         if not self.wave_active:
             self.wave_active = True
             self.last_wave = tick
             self.wave_pos = -5.0
             self.wave_hue = random.random()
-            print("Starting new wave!")
 
         # Move the wave along
         if self.wave_active:
