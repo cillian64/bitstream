@@ -16,15 +16,33 @@ intensity_away_from_wave = (25, 75)  # Matches baseline rainfall
 intensity_near_wave = (50, 150)
 intensity_at_wave = (50, 150)
 
+# What change in hue does a rainbow wave experience from one end to the other
+rainbow_hue_range = 0.3
 
 
-class RainColourWaves:
-    name = "Rain Colour Waves"
-    transition_len = 0
-    pattern_len = 8000
+def clip3(val, min=0.0, max=1.0):
+    """ Clip a value to within a min and max range """
+    if val < min:
+        return min
+    elif val > max:
+        return max
+    else:
+        return val
 
-    def __init__(self):
-        self.wave_hue = random.random()
+
+class RainWaves:
+    """ Generic class covering both rainbow and fixed colour waves """
+
+    def __init__(self, rainbow):
+        self.rainbow = rainbow
+        if rainbow:
+            # For rainbow waves the hue will vary as it moves.  The hue we
+            # store here is what is seen at the left edge.  To ensure the
+            # rainbow doesn't go out of range we cap the starting hue.
+            self.wave_hue = random.random() * (1 - rainbow_hue_range)
+        else:
+            self.wave_hue = random.random()
+
         if random.randint(0, 1) == 0:
             # Wave from left to right
             self.wave_pos = -5.0
@@ -58,16 +76,38 @@ class RainColourWaves:
             if random.random() < density:
                 # Generate a drop
                 drop_intensity = random.randint(*intensity) / 255
-#                drop_saturation = (density - density_away_from_wave) / \
-#                                  (density_at_wave - density_away_from_wave) \
-#                                  * 0.25
+
                 if abs(strip_num - self.wave_pos) < 5.0:
                     drop_saturation = 1 - abs(strip_num - self.wave_pos) / 5.0
                     drop_saturation = drop_saturation ** 0.5
                 else:
                     drop_saturation = 0.0
 
-                drop_hsv = (self.wave_hue, drop_saturation, drop_intensity)
+                if self.rainbow:
+                    hue = self.wave_hue + \
+                        clip3(self.wave_pos / 15.0) * rainbow_hue_range
+                else:
+                    hue = self.wave_hue
+
+                drop_hsv = (hue, drop_saturation, drop_intensity)
                 rgb = colorsys.hsv_to_rgb(*drop_hsv)
                 drop_colour = tuple(255 * x for x in rgb)
                 strip[0] = drop_colour
+
+
+class RainColourWaves(RainWaves):
+    name = "Rain Colour Waves"
+    transition_len = 0
+    pattern_len = 8000
+
+    def __init__(self):
+        super().__init__(rainbow=False)
+
+
+class RainbowWaves(RainWaves):
+    name = "Rainbow Waves"
+    transition_len = 0
+    pattern_len = 8000
+
+    def __init__(self):
+        super().__init__(rainbow=True)

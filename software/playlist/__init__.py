@@ -1,23 +1,20 @@
 from playlist.colour_rain import ColourRain
 from playlist.rainfall import Rainfall
 from playlist.rain_intensity_waves import RainIntensityWaves
-from playlist.rain_colour_waves import RainColourWaves
-# from playlist.stars import Stars
-# from playlist.colour_wipes import ColourWipes
+from playlist.rain_colour_waves import RainColourWaves, RainbowWaves
 
 
 # Playlist of pattern classes.  A fresh pattern object is created from each
 # class when the pattern starts to help make a clean state.
 patterns = [
-    # Rainfall,
     Rainfall,
     RainIntensityWaves,
     Rainfall,
     ColourRain,
     Rainfall,
     RainColourWaves,
-    # Stars,
-    # ColourWipes,
+    Rainfall,
+    RainbowWaves,
 ]
 
 # Length of transition, in milliseconds, for patterns which don't specify
