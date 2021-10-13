@@ -16,7 +16,6 @@ intensity_away_from_wave = (25, 75)  # Matches baseline rainfall
 intensity_near_wave = (50, 150)
 intensity_at_wave = (50, 150)
 
-wave_speed = 0.1
 
 
 class RainColourWaves:
@@ -24,21 +23,20 @@ class RainColourWaves:
     transition_len = 0
     pattern_len = 8000
 
-    wave_active = False
-    wave_pos = -5.0
-    wave_hue = 0.0
-    last_wave = 0
+    def __init__(self):
+        self.wave_hue = random.random()
+        if random.randint(0, 1) == 0:
+            # Wave from left to right
+            self.wave_pos = -5.0
+            self.wave_velocity = 0.1
+        else:
+            # Wave from right to left
+            self.wave_pos = 20.0
+            self.wave_velocity = -0.1
 
     def generate(self, led_state, transition, tick):
-        if not self.wave_active:
-            self.wave_active = True
-            self.last_wave = tick
-            self.wave_pos = -5.0
-            self.wave_hue = random.random()
-
         # Move the wave along
-        if self.wave_active:
-            self.wave_pos += wave_speed
+        self.wave_pos += self.wave_velocity
 
         # Move all the LED positions down by one, shifting in black
         for strip in led_state:

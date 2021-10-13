@@ -17,19 +17,20 @@ class RainIntensityWaves:
     transition_len = 0
     pattern_len = 5000
 
-    wave_active = False
-    wave_pos = -5.0
-    last_wave = 0
+    def __init__(self):
+        if random.randint(0, 1) == 0:
+            # Wave from left to right
+            self.wave_pos = -5.0
+            self.wave_vel = 0.2
+        else:
+            # Wave from right to left
+            self.wave_pos = 20.0
+            self.wave_vel = -0.2
+
 
     def generate(self, led_state, transition, tick):
-        if not self.wave_active:
-            self.wave_active = True
-            self.last_wave = tick
-            self.wave_pos = -5.0
-
         # Move the wave along
-        if self.wave_active:
-            self.wave_pos += 0.2
+        self.wave_pos += self.wave_vel
 
         # Move all the LED positions down by one, shifting in black
         for strip in led_state:
