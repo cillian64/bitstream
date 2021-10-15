@@ -1,21 +1,26 @@
-from playlist.colour_rain import ColourRain
+import random
+
 from playlist.rainfall import Rainfall
+
+from playlist.colour_rain import ColourRain
 from playlist.rain_intensity_waves import RainIntensityWaves
 from playlist.rain_colour_waves import RainColourWaves, RainbowWaves
 from playlist.rain_strobe import RainStrobe
 
 
-# Playlist of pattern classes.  A fresh pattern object is created from each
-# class when the pattern starts to help make a clean state.
+# Pattern classes.  A fresh pattern object is created from each class when the
+# pattern starts to help make a clean state.  These are played in random order.
+# Patterns can be repeated in this list to skew the probabilities, making them
+# be selected more often.
 patterns = [
     Rainfall,
+    Rainfall,
+    Rainfall,
     RainStrobe,
-    RainIntensityWaves,
-    Rainfall,
     ColourRain,
-    Rainfall,
+    ColourRain,
+    RainIntensityWaves,
     RainColourWaves,
-    Rainfall,
     RainbowWaves,
 ]
 
@@ -29,21 +34,20 @@ default_pattern_len = 10 * 1000
 
 class Playlist:
     def __init__(self):
-        self.pattern_ptr = None
         self.pattern_start_tick = None
         self.current_pattern = None
 
     def _pattern_len(self):
         """ How long is the body of the current pattern (excluding transitions)
         in milliseconds """
-        if hasattr(patterns[self.pattern_ptr], 'pattern_len'):
-            return patterns[self.pattern_ptr].pattern_len
+        if hasattr(self.current_pattern, 'pattern_len'):
+            return self.current_pattern.pattern_len
         else:
             return default_pattern_len
 
     def _transition_len(self):
-        if hasattr(patterns[self.pattern_ptr], 'transition_len'):
-            return patterns[self.pattern_ptr].transition_len
+        if hasattr(self.current_pattern, 'transition_len'):
+            return self.current_pattern.transition_len
         else:
             return default_transition_len
 
@@ -75,26 +79,30 @@ class Playlist:
 
         return transition
 
+    def _new_pattern(self, tick):
+        """ Pick a new pattern """
+        # Choose the new pattern class.  Don't pick the same pattern twice.
+        last_pattern_class = type(self.current_pattern)
+        new_pattern_class = last_pattern_class
+        while new_pattern_class is last_pattern_class:
+            new_pattern_class = random.choice(patterns)
+
+        # Instantiate the new pattern class
+        self.current_pattern = new_pattern_class()
+
+        self.pattern_start_tick = tick
+        print("Starting pattern {}".format(self.current_pattern.name))
+
     def generate(self, led_state, tick):
         """ Run patterns from the playlist with transitions, updating
         led_state.  `tick` is an absolute time in milliseconds.
         """
 
-        # Handle first run
-        if self.current_pattern is None:
-            self.pattern_ptr = 0
-            self.pattern_start_tick = tick
-            self.current_pattern = patterns[0]()
-            print("Starting with pattern number {} named {}".format(
-                self.pattern_ptr, self.current_pattern.name))
-
-        # Start a new pattern if needed
-        if tick - self.pattern_start_tick > self._total_len():
-            self.pattern_start_tick = tick
-            self.pattern_ptr = (self.pattern_ptr + 1) % len(patterns)
-            self.current_pattern = patterns[self.pattern_ptr]()
-            print("Started new pattern number {} named {}".format(
-                self.pattern_ptr, self.current_pattern.name))
+        # Start a new pattern if this is the first run or if the current
+        # pattern has had long enough
+        if self.current_pattern is None or \
+                tick - self.pattern_start_tick > self._total_len():
+            self._new_pattern(tick)
 
         tick_in_pattern = tick - self.pattern_start_tick
         transition = self._gen_transition(tick_in_pattern)
