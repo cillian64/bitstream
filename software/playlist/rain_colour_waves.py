@@ -4,15 +4,11 @@ import colorsys
 
 # Drops are more dense and on average brighter near the wave centre
 density_away_from_wave = 1 / 15  # Matches baseline rainfall
-#density_near_wave = 0.35
-#density_at_wave = 0.45
 density_near_wave = 4 / 15
 density_at_wave = 4 / 15
 
 # Each of these is a range corresponding to arguments to random.randint
 intensity_away_from_wave = (25, 75)  # Matches baseline rainfall
-#intensity_near_wave = (100, 200)
-#intensity_at_wave = (125, 255)
 intensity_near_wave = (50, 150)
 intensity_at_wave = (50, 150)
 
