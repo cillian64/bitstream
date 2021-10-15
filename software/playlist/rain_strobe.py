@@ -38,7 +38,7 @@ class Drop:
 class RainStrobe:
     name = "Rain Strobe"
     transition_len = 3000
-    pattern_len = 3000
+    pattern_len = 1000
 
     def generate(self, led_state, transition, tick):
         # The way this pattern works relies on us holding the drops as separate
