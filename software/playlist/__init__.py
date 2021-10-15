@@ -16,11 +16,14 @@ patterns = [
     Rainfall,
     Rainfall,
     Rainfall,
+    ColourRain,
     RainStrobe,
-    ColourRain,
-    ColourRain,
+    RainStrobe,
+    RainIntensityWaves,
     RainIntensityWaves,
     RainColourWaves,
+    RainColourWaves,
+    RainbowWaves,
     RainbowWaves,
 ]
 
