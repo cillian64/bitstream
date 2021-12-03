@@ -29,12 +29,16 @@ class SpookyWave:
             self.wave_pos = 20.0
             self.wave_velocity = -0.2
 
-        if random.randint(0, 1) == 0:
+        rand_colour = random.randint(0, 2)
+        if rand_colour == 0:
             # Orange wave
             self.wave_hue = (255, 100, 0)
-        else:
+        elif rand_colour == 1:
             # Purple wave
             self.wave_hue = (120, 0, 204)
+        else:
+            # Red wave
+            self.wave_hue = (255, 0, 0)
 
     def generate(self, led_state, transition, tick):
         # Move the wave along

@@ -1,30 +1,21 @@
 import random
 
-from playlist.rainfall import Rainfall
-
-from playlist.colour_rain import ColourRain
-from playlist.rain_intensity_waves import RainIntensityWaves
-from playlist.rain_colour_waves import RainColourWaves, RainbowWaves
-from playlist.rain_strobe import RainStrobe
-
+# from playlist.rainfall import Rainfall
+# from playlist.colour_rain import ColourRain
+# from playlist.rain_intensity_waves import RainIntensityWaves
+# from playlist.rain_colour_waves import RainColourWaves, RainbowWaves
+# from playlist.rain_strobe import RainStrobe
+from playlist.spooky_rain import SpookyRain
+from playlist.spooky_blood_rain import SpookyBloodRain
+from playlist.spooky_wave import SpookyWave
 
 # Pattern classes.  A fresh pattern object is created from each class when the
 # pattern starts to help make a clean state.  These are played in random order.
 # Patterns can be repeated in this list to skew the probabilities, making them
 # be selected more often.
 patterns = [
-    Rainfall,
-    Rainfall,
-    Rainfall,
-    ColourRain,
-    RainStrobe,
-    RainStrobe,
-    RainIntensityWaves,
-    RainIntensityWaves,
-    RainColourWaves,
-    RainColourWaves,
-    RainbowWaves,
-    RainbowWaves,
+    SpookyRain,
+    SpookyWave,
 ]
 
 # Length of transition, in milliseconds, for patterns which don't specify
