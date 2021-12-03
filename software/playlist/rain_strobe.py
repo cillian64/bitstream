@@ -49,8 +49,13 @@ class RainStrobe:
             for strip_idx, strip in enumerate(led_state):
                 for y, pixel in enumerate(strip):
                     if pixel != (0, 0, 0):
-                        assert pixel[0] == pixel[1]
-                        assert pixel[0] == pixel[2]
+                        # We only know how to store white pixels.  But under
+                        # some unusual circumstances we end up with some
+                        # coloured pixels left over from the previous pattern.
+                        # If this happens, just force them to white.
+                        # Inelegant, I know.
+                        # assert pixel[0] == pixel[1]
+                        # assert pixel[0] == pixel[2]
                         self.drops.append(Drop(strip_idx, y, False, pixel[0]))
                     strip[y] = (0, 0, 0)
 
